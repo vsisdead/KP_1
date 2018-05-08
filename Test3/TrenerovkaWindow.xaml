@@ -1,0 +1,35 @@
+﻿<Window x:Class="Test3.TrenerovkaWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Test3"
+        mc:Ignorable="d"
+        Title="TrenerovkaWindow" Height="320" Width="640">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20 ,8,20,8" />
+            <Setter Property="Width" Value="100" />
+            <Setter Property="Height" Value="30" />
+        </Style>
+    </Window.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <DataGrid x:Name="trenerovkaGrid" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="175" Margin="80,31,0,0" VerticalAlignment="Top" Width="470">
+            <DataGrid.Columns>
+                <DataGridTextColumn Binding="{Binding TRENEROVKA1}" Header="Тренерорвка" Width="100" />
+                <DataGridTextColumn Binding="{Binding TRENEROVKA_NAME}" Header="Название" Width="100"/>
+                <DataGridTextColumn Binding="{Binding SOSTAV}" Header="Состав" Width="100"/>
+                <DataGridTextColumn Binding="{Binding TRENEROVKA_DATE}" Header="Дата" Width="100"/>
+                <DataGridTextColumn Binding="{Binding TRENEROVKA_TYPE}" Header="Время" Width="70"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
+            <Button x:Name="updateButton" Content="Обновить" Click="updateButton_Click" />
+            <Button x:Name="deleteButton" Content="Удалить" Click="deleteButton_Click" />
+        </StackPanel>
+    </Grid>
+</Window>
