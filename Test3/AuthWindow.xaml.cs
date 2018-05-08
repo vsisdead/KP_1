@@ -37,7 +37,7 @@ namespace Test3
                 string password = passwordBox.Password;
                                 
                 var user = db.USERS.FirstOrDefault(u => u.USERNAME.Equals(username) && u.PASS.Equals(password));
-                
+                // куча ифов
                 if (user.ROLE == "Администратор")
                 {
                     MainWindow mainWindow = new MainWindow();
