@@ -10,11 +10,10 @@ namespace Test3.Models
     {
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int IDSPORTSMEN { get; set; }
+        public int USER_ID { get; set; }
 
-        public int? USER_ID { get; set; }
-
-        public int IDGROUP { get; set; }
+        [StringLength(20)]
+        public string SOSTAV_NAME { get; set; }
 
         [StringLength(20)]
         public string SPORTSMEN_NAME { get; set; }
@@ -28,7 +27,7 @@ namespace Test3.Models
         [Column(TypeName = "date")]
         public DateTime? BDAY { get; set; }
 
-        public virtual GROUPS GROUPS { get; set; }
+        public virtual SOSTAV SOSTAV { get; set; }
 
         public virtual USERS USERS { get; set; }
     }

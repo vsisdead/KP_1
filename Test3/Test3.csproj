@@ -66,8 +66,14 @@
     <Compile Include="AuthWindow.xaml.cs">
       <DependentUpon>AuthWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="DoctorsWindow.xaml.cs">
-      <DependentUpon>DoctorsWindow.xaml</DependentUpon>
+    <Compile Include="ForUsers\AddTrenerWindow.xaml.cs">
+      <DependentUpon>AddTrenerWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ForUsers\AddSportsmenWindow.xaml.cs">
+      <DependentUpon>AddSportsmenWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ForUsers\AddDoctorWindow.xaml.cs">
+      <DependentUpon>AddDoctorWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ForUsers\DoctorMainWindow.xaml.cs">
       <DependentUpon>DoctorMainWindow.xaml</DependentUpon>
@@ -79,7 +85,6 @@
       <DependentUpon>TrenersMainWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Models\DOCTOR.cs" />
-    <Compile Include="Models\GROUPS.cs" />
     <Compile Include="Models\Model1.cs" />
     <Compile Include="Models\OSMOTR.cs" />
     <Compile Include="Models\SOSTAV.cs" />
@@ -88,21 +93,6 @@
     <Compile Include="Models\TRENER.cs" />
     <Compile Include="Models\TRENEROVKA.cs" />
     <Compile Include="Models\USERS.cs" />
-    <Compile Include="OsmotrWindow.xaml.cs">
-      <DependentUpon>OsmotrWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SostavWindow.xaml.cs">
-      <DependentUpon>SostavWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="SportsmensWindow.xaml.cs">
-      <DependentUpon>SportsmensWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TrenerovkaWindow.xaml.cs">
-      <DependentUpon>TrenerovkaWindow.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="TrenersWindow.xaml.cs">
-      <DependentUpon>TrenersWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="UsersWindow.xaml.cs">
       <DependentUpon>UsersWindow.xaml</DependentUpon>
     </Compile>
@@ -110,7 +100,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="DoctorsWindow.xaml">
+    <Page Include="ForUsers\AddTrenerWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ForUsers\AddSportsmenWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="ForUsers\AddDoctorWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -138,26 +136,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="OsmotrWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SostavWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SportsmensWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TrenerovkaWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="TrenersWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="UsersWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

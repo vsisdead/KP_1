@@ -13,7 +13,6 @@ namespace Test3.Models
         }
 
         public virtual DbSet<DOCTOR> DOCTOR { get; set; }
-        public virtual DbSet<GROUPS> GROUPS { get; set; }
         public virtual DbSet<OSMOTR> OSMOTR { get; set; }
         public virtual DbSet<SOSTAV> SOSTAV { get; set; }
         public virtual DbSet<SPORTSMENS> SPORTSMENS { get; set; }
@@ -24,95 +23,27 @@ namespace Test3.Models
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<DOCTOR>()
-                .Property(e => e.OSMOTR)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<GROUPS>()
-                .Property(e => e.SOSTAV)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<GROUPS>()
-                .HasMany(e => e.SPORTSMENS)
-                .WithRequired(e => e.GROUPS)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<OSMOTR>()
-                .Property(e => e.OSMOTR1)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<OSMOTR>()
-                .Property(e => e.SOSTAV)
-                .IsFixedLength()
-                .IsUnicode(false);
-
             modelBuilder.Entity<OSMOTR>()
                 .HasMany(e => e.DOCTOR)
-                .WithRequired(e => e.OSMOTR1)
-                .HasForeignKey(e => e.OSMOTR)
+                .WithRequired(e => e.OSMOTR)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<SOSTAV>()
-                .Property(e => e.SOSTAV1)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<SOSTAV>()
-                .HasMany(e => e.GROUPS)
-                .WithRequired(e => e.SOSTAV1)
-                .HasForeignKey(e => e.SOSTAV)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<SOSTAV>()
-                .HasMany(e => e.OSMOTR)
-                .WithRequired(e => e.SOSTAV1)
-                .HasForeignKey(e => e.SOSTAV)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<SOSTAV>()
-                .HasMany(e => e.TRENEROVKA)
-                .WithRequired(e => e.SOSTAV1)
-                .HasForeignKey(e => e.SOSTAV)
-                .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<TRENER>()
-                .Property(e => e.TRENEROVKA)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<TRENEROVKA>()
-                .Property(e => e.TRENEROVKA1)
-                .IsFixedLength()
-                .IsUnicode(false);
-
-            modelBuilder.Entity<TRENEROVKA>()
-                .Property(e => e.SOSTAV)
-                .IsFixedLength()
-                .IsUnicode(false);
 
             modelBuilder.Entity<TRENEROVKA>()
                 .HasMany(e => e.TRENER)
-                .WithRequired(e => e.TRENEROVKA1)
-                .HasForeignKey(e => e.TRENEROVKA)
+                .WithRequired(e => e.TRENEROVKA)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<USERS>()
-                .HasMany(e => e.DOCTOR)
-                .WithOptional(e => e.USERS)
-                .HasForeignKey(e => e.USER_ID);
+                .HasOptional(e => e.DOCTOR)
+                .WithRequired(e => e.USERS);
 
             modelBuilder.Entity<USERS>()
-                .HasMany(e => e.SPORTSMENS)
-                .WithOptional(e => e.USERS)
-                .HasForeignKey(e => e.USER_ID);
+                .HasOptional(e => e.SPORTSMENS)
+                .WithRequired(e => e.USERS);
 
             modelBuilder.Entity<USERS>()
-                .HasMany(e => e.TRENER)
-                .WithOptional(e => e.USERS)
-                .HasForeignKey(e => e.USER_ID);
+                .HasOptional(e => e.TRENER)
+                .WithRequired(e => e.USERS);
         }
     }
 }

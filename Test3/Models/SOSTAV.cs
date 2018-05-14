@@ -12,24 +12,20 @@ namespace Test3.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public SOSTAV()
         {
-            GROUPS = new HashSet<GROUPS>();
             OSMOTR = new HashSet<OSMOTR>();
+            SPORTSMENS = new HashSet<SPORTSMENS>();
             TRENEROVKA = new HashSet<TRENEROVKA>();
         }
 
         [Key]
-        [Column("SOSTAV")]
-        [StringLength(10)]
-        public string SOSTAV1 { get; set; }
-
         [StringLength(20)]
         public string SOSTAV_NAME { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<GROUPS> GROUPS { get; set; }
+        public virtual ICollection<OSMOTR> OSMOTR { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<OSMOTR> OSMOTR { get; set; }
+        public virtual ICollection<SPORTSMENS> SPORTSMENS { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TRENEROVKA> TRENEROVKA { get; set; }

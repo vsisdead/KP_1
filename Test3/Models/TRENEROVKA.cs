@@ -16,23 +16,16 @@ namespace Test3.Models
         }
 
         [Key]
-        [Column("TRENEROVKA")]
-        [StringLength(10)]
-        public string TRENEROVKA1 { get; set; }
-
         [StringLength(20)]
         public string TRENEROVKA_NAME { get; set; }
 
-        [Required]
-        [StringLength(10)]
-        public string SOSTAV { get; set; }
+        [StringLength(20)]
+        public string SOSTAV_NAME { get; set; }
 
-        [Column(TypeName = "date")]
+        [Column(TypeName = "smalldatetime")]
         public DateTime? TRENEROVKA_DATE { get; set; }
 
-        public TimeSpan? TRENEROVKA_TIME { get; set; }
-
-        public virtual SOSTAV SOSTAV1 { get; set; }
+        public virtual SOSTAV SOSTAV { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<TRENER> TRENER { get; set; }

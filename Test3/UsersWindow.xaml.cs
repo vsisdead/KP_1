@@ -29,10 +29,13 @@ namespace Test3
             db = new Model1();
             db.USERS.Load(); // загружаем данные
             usersGrid.ItemsSource = db.USERS.Local.ToBindingList(); // устанавливаем привязку к кэшу
-
             this.Closing += UsersWindow_Closing;
-        }
+            comboBox1.Items.Add("Администратор");
+            comboBox1.Items.Add("Спортсмен");
+            comboBox1.Items.Add("Тренер");
+            comboBox1.Items.Add("Доктор");
 
+        }
         private void UsersWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             db.Dispose();
@@ -41,6 +44,7 @@ namespace Test3
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
             db.SaveChanges();
+            db.USERS.Load();
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
@@ -59,5 +63,55 @@ namespace Test3
             db.SaveChanges();
         }
 
+        private void addButton_Click(object sender, RoutedEventArgs e)
+        {
+            using (Model1 db = new Model1())
+            {
+                USERS users = new USERS();
+                users.ROLE = comboBox1.Text;
+                users.USERNAME = textBoxLog.Text;
+                users.PASS = passwordBox.Password;
+                users.ID = Convert.ToInt32(textBoxID.Text);
+
+                db.USERS.Add(users);
+                try
+                {
+                    
+                    db.SaveChanges();
+                    MessageBox.Show("Добавлен новый пользователь " + users.USERNAME);
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                    //this.Close();
+                }
+            }
+            textBoxID.Clear();
+            textBoxLog.Clear();
+            passwordBox.Clear();
+            db.USERS.Load();
+        }
+
+        private void findButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (textBoxLog.Text != null)
+                {
+                    string uname = textBoxLog.Text;
+                    usersGrid.ItemsSource = db.USERS.Where(p => p.USERNAME == uname).ToList();
+                }
+                if(textBoxLog.Text == "")
+                {
+                    usersGrid.ItemsSource = db.USERS.ToList();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+       
     }
 }
+   

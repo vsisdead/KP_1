@@ -9,12 +9,10 @@ namespace Test3.Models
     [Table("TRENER")]
     public partial class TRENER
     {
+       
         [Key]
-        [Column("TRENER")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int TRENER1 { get; set; }
-
-        public int? USER_ID { get; set; }
+        public int USER_ID { get; set; }
 
         [StringLength(20)]
         public string TRENER_FAMIL { get; set; }
@@ -26,10 +24,10 @@ namespace Test3.Models
         public string TRENER_MIDDLE { get; set; }
 
         [Required]
-        [StringLength(10)]
-        public string TRENEROVKA { get; set; }
+        [StringLength(20)]
+        public string TRENEROVKA_NAME { get; set; }
 
-        public virtual TRENEROVKA TRENEROVKA1 { get; set; }
+        public virtual TRENEROVKA TRENEROVKA { get; set; }
 
         public virtual USERS USERS { get; set; }
     }

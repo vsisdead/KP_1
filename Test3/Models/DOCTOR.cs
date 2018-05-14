@@ -10,12 +10,10 @@ namespace Test3.Models
     public partial class DOCTOR
     {
         [Key]
-        [Column("DOCTOR")]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int DOCTOR1 { get; set; }
+        public int USER_ID { get; set; }
 
-        public int? USER_ID { get; set; }
-
+        [Required]
         [StringLength(20)]
         public string DOCTOR_NAME { get; set; }
 
@@ -27,9 +25,9 @@ namespace Test3.Models
 
         [Required]
         [StringLength(20)]
-        public string OSMOTR { get; set; }
+        public string OSMOTR_NAME { get; set; }
 
-        public virtual OSMOTR OSMOTR1 { get; set; }
+        public virtual OSMOTR OSMOTR { get; set; }
 
         public virtual USERS USERS { get; set; }
     }

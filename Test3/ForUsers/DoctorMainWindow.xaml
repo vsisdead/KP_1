@@ -5,13 +5,98 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test3.ForUsers"
         mc:Ignorable="d"
-           Title="Окно доктора" Height="350" Width="525">
+           Title="Пользователь: Доктор" Height="350" Width="640">
 
     <Grid>
-        <Button Content="Состав" Margin="25,161,372,0" VerticalAlignment="Top" Click="Button_Click_1" Height="30"/>
-        <Button Content="Список спортсменов" Margin="25,196,372,0" VerticalAlignment="Top" Click="Button_Click_2" Height="30"/>
-        <Button Content="Список докторов" Margin="25,46,372,0" VerticalAlignment="Top" Click="Button_Click_4" Height="30"/>
-        <Button Content="Осмотры" Margin="25,81,372,0" VerticalAlignment="Top" Click="Button_Click_5" Height="30"/>
-        <Button Content="Выйти" HorizontalAlignment="Left" Margin="401,46,0,0" VerticalAlignment="Top" Width="50" Height="20" Click="Button_Click"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20*"/>
+            <RowDefinition Height="260*"/>
+            <RowDefinition Height="39*"/>
+        </Grid.RowDefinitions>
+
+        <Menu Height="20" VerticalAlignment="Top">
+            <MenuItem x:Name="label1" Header="Label:" Width="auto" Height="auto" />
+
+
+            <MenuItem x:Name="About" Header="О программе" HorizontalAlignment="Left" Click="About_Click"/>
+            <MenuItem Header="Выйти" HorizontalAlignment="Left" Click="Button_Click"/>
+        </Menu>
+
+        <TabControl Grid.Row="1" Grid.RowSpan="2">
+            <TabItem Header="Список докторов">
+                <Grid Background="#808080">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="81*"/>
+                        <ColumnDefinition Width="118*"/>
+                        <ColumnDefinition Width="46*"/>
+                        <ColumnDefinition Width="119*"/>
+                        <ColumnDefinition Width="66*"/>
+                        <ColumnDefinition Width="119*"/>
+                        <ColumnDefinition Width="77*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="doctorGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="auto" Margin="80,31,0,0" VerticalAlignment="Top" Width="auto" Grid.ColumnSpan="7" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding USER_ID}" Header="ID" Width="auto" />
+                            <DataGridTextColumn Binding="{Binding DOCTOR_FAMIL}" Header="Фамилия" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding DOCTOR_NAME}" Header="Имя" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding DOCTOR_MIDDLE}" Header="Отчество" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding OSMOTR_NAME}" Header="Тип осмотра" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="addButton" Content="Добавить доктора" HorizontalAlignment="Left" Margin="8,75,0,0" VerticalAlignment="Top" Width="120" Click="addButton_Click" Grid.ColumnSpan="2"/>
+                    <Button x:Name="updateButton" Content="Обновить" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="8,109,71,0" Click="updateButton_Click" Grid.ColumnSpan="2" />
+                    <TextBox x:Name="textBoxFind" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="31,220,0,0" TextWrapping="Wrap" ToolTip="Поиск по фамилии" VerticalAlignment="Top" Width="120"/>
+                    <Button Content="find" Grid.Column="1" Margin="70,220,10,0" VerticalAlignment="Top" Height="23" Click="findButton_Click"/>
+                </Grid>
+            </TabItem>
+
+
+            <TabItem Header="Список спортсменов">
+                <Grid Background="#808080">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="80*"/>
+                        <ColumnDefinition Width="139*"/>
+                        <ColumnDefinition Width="50*"/>
+                        <ColumnDefinition Width="119*"/>
+                        <ColumnDefinition Width="43*"/>
+                        <ColumnDefinition Width="117*"/>
+                        <ColumnDefinition Width="78*"/>
+                    </Grid.ColumnDefinitions>
+                    <DataGrid x:Name="sportsmenGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="auto" Margin="0,31,0,0" VerticalAlignment="Top" Width="auto" Grid.Column="1" Grid.ColumnSpan="6" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding USER_ID}" Header="ID" Width="auto" />
+                            <DataGridTextColumn Binding="{Binding SOSTAV_NAME}" Header="Состав" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding SPORTSMEN_FAMIL}" Header="Фамилия" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding SPORTSMEN_NAME}" Header="Имя" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding SPORTSMEN_MIDDLE}" Header="Отчество" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding BDAY}" Header="Дата рождения" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+
+
+                    <TextBox x:Name="textBoxFind1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="31,220,0,0" TextWrapping="Wrap" ToolTip="Поиск по фамилии" VerticalAlignment="Top" Width="120"/>
+                    <Button Content="find" Grid.Column="1" Margin="70,220,10,0" VerticalAlignment="Top" Height="23" Click="findButton_Click1"/>
+
+                    <Button x:Name="updateButton1" Content="Обновить" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="0,221,42,0" Click="updateButton_Click" Grid.Column="3" Grid.ColumnSpan="2" />
+                </Grid>
+            </TabItem>
+            <TabItem Header="Осмотры">
+                <Grid Background="#808080">
+                    <DataGrid x:Name="osmotrGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="auto" Margin="66,65,412,0" VerticalAlignment="Top" Width="auto" >
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding OSMOTR_NAME}" Header="Название" Width="auto" IsReadOnly="True"/>
+                            <DataGridTextColumn Binding="{Binding SOSTAV_NAME}" Header="Состав" Width="auto"/>
+                            <DataGridTextColumn Binding="{Binding OSMOTR_DATE}" Header="Дата" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <DataGrid x:Name="sostavGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="auto" Margin="435,65,91,0" VerticalAlignment="Top" Width="100" IsReadOnly="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding SOSTAV_NAME}" Header="Состав" Width="auto"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <Button x:Name="updateButton3" Content="Обновить" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="0,221,42,0" Click="updateButton_Click3" Grid.Column="3" Grid.ColumnSpan="2" />
+                </Grid>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

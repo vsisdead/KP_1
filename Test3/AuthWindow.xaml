@@ -6,14 +6,15 @@
         xmlns:local="clr-namespace:Test3"
         mc:Ignorable="d"
         Title="Авторизация" Height="320" Width="640">
-       <Grid>
+    <Grid>
 
 
-        <TextBox Name="textBoxLog" HorizontalAlignment="Left" Height="25" Margin="237,69,0,0" TextWrapping="Wrap" Width="200" VerticalAlignment="Top"/>
-        <PasswordBox Name="passwordBox" HorizontalAlignment="Left" Margin="237,109,0,0" VerticalAlignment="Top" Width="200" Height="25"/>
-        <Button Content="Вход" HorizontalAlignment="Center" Width="120" Margin="274,221,238,39" Click="Button_Click" />
-        <ComboBox x:Name="comboBox" HorizontalAlignment="Left" Margin="237,161,0,0" VerticalAlignment="Top" Width="200" Height="35"/>
-
+        <TextBox Name="textBoxLog" KeyDown="ButtonClick_KeyDown" HorizontalAlignment="Left" Height="25" Margin="237,107,0,0" TextWrapping="Wrap" Width="200" VerticalAlignment="Top"/>
+        <PasswordBox Name="passwordBox" KeyDown="ButtonClick_KeyDown" HorizontalAlignment="Left" Margin="237,147,0,0" VerticalAlignment="Top" Width="200" Height="25"/>
+        <Button Content="Вход"  HorizontalAlignment="Center" Width="120" Margin="267,192,245,68" Click="Button_Click" />
+        <Button Content="Очистить" HorizontalAlignment="Center" Width="120" Margin="267,226,245,34" Click="Button1_Click"/>
+        <Label Content="Логин:" HorizontalAlignment="Left" Margin="157,107,0,0" VerticalAlignment="Top"/>
+        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="157,147,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>
