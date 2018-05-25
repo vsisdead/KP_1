@@ -9,7 +9,6 @@ namespace Test3.Models
     [Table("TRENER")]
     public partial class TRENER
     {
-       
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int USER_ID { get; set; }
@@ -28,7 +27,5 @@ namespace Test3.Models
         public string TRENEROVKA_NAME { get; set; }
 
         public virtual TRENEROVKA TRENEROVKA { get; set; }
-
-        public virtual USERS USERS { get; set; }
     }
 }

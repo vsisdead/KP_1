@@ -21,6 +21,9 @@ namespace Test3.Models
         [StringLength(20)]
         public string SOSTAV_NAME { get; set; }
 
+        [StringLength(20)]
+        public string BLIZH_MATCH { get; set; }
+
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<OSMOTR> OSMOTR { get; set; }
 

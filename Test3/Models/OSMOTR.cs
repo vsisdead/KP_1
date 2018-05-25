@@ -22,8 +22,8 @@ namespace Test3.Models
         [StringLength(20)]
         public string SOSTAV_NAME { get; set; }
 
-        [Column(TypeName = "smalldatetime")]
-        public DateTime? OSMOTR_DATE { get; set; }
+        [StringLength(20)]
+        public string OSMOTR_DATE { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<DOCTOR> DOCTOR { get; set; }

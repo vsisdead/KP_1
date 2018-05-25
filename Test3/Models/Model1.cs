@@ -16,7 +16,6 @@ namespace Test3.Models
         public virtual DbSet<OSMOTR> OSMOTR { get; set; }
         public virtual DbSet<SOSTAV> SOSTAV { get; set; }
         public virtual DbSet<SPORTSMENS> SPORTSMENS { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<TRENER> TRENER { get; set; }
         public virtual DbSet<TRENEROVKA> TRENEROVKA { get; set; }
         public virtual DbSet<USERS> USERS { get; set; }
@@ -32,18 +31,6 @@ namespace Test3.Models
                 .HasMany(e => e.TRENER)
                 .WithRequired(e => e.TRENEROVKA)
                 .WillCascadeOnDelete(false);
-
-            modelBuilder.Entity<USERS>()
-                .HasOptional(e => e.DOCTOR)
-                .WithRequired(e => e.USERS);
-
-            modelBuilder.Entity<USERS>()
-                .HasOptional(e => e.SPORTSMENS)
-                .WithRequired(e => e.USERS);
-
-            modelBuilder.Entity<USERS>()
-                .HasOptional(e => e.TRENER)
-                .WithRequired(e => e.USERS);
         }
     }
 }

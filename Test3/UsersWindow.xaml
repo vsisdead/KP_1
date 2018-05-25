@@ -5,37 +5,61 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test3"
         mc:Ignorable="d"
-        Title="Окно добавления пользователя" Height="320" Width="640">
-    <Window.Resources>
-        <Style TargetType="Button">
-            <Setter Property="Margin" Value="20 ,8,20,8" />
-            <Setter Property="Width" Value="100" />
-            <Setter Property="Height" Value="30" />
-        </Style>
-    </Window.Resources>
+        WindowStartupLocation="CenterScreen"
+        Title="Окно добавления пользователя" Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/bate.jpg" Stretch="UniformToFill" TileMode="None" />
+    </Window.Background>
+
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
-            <RowDefinition Height="Auto" />
+            <RowDefinition Height="18*"/>
+            <RowDefinition Height="264*"/>
+            <RowDefinition Height="40*"/>
+            <RowDefinition Height="33*"/>
+            <RowDefinition Height="95*"/>
         </Grid.RowDefinitions>
-        <TextBox x:Name="textBoxID" HorizontalAlignment="Left" Height="23" Margin="80,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="40"/>
-        <TextBox x:Name="textBoxLog" HorizontalAlignment="Left" Height="23" Margin="140,30,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
-        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Left" Height="23" Margin="286,30,0,0" VerticalAlignment="Top" Width="120"/>
-        <ComboBox Name="comboBox1" HorizontalAlignment="Left" Margin="432,30,0,0" VerticalAlignment="Top" Width="120"/>
-        <DataGrid x:Name="usersGrid" ItemsSource="{Binding USERS}" AutoGenerateColumns="False" HorizontalAlignment="Left" Height="175" Margin="80,67,0,0" VerticalAlignment="Top" Width="470">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding ID}" Header="ID" Width="50" />
-                <DataGridTextColumn Binding="{Binding USERNAME}" Header="Логин" Width="150"/>
-                <DataGridTextColumn Binding="{Binding PASS}" Header="Пароль" Width="150"/>
-                <DataGridTextColumn Binding="{Binding ROLE}" Header="Роль" Width="SizeToCells"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <StackPanel HorizontalAlignment="Center"  Grid.Row="1" Orientation="Horizontal">
-            <Button x:Name="addButton" Content="Добавить" Click="addButton_Click" />
-            <!--<Button x:Name="clearButton" Content="Очистить"  Width="100" Click="clearButton_Click"/>-->
-            <Button x:Name="updateButton" Content="Обновить" Click="updateButton_Click" />
-            <Button x:Name="deleteButton" Content="Удалить" Click="deleteButton_Click" />
-        </StackPanel>
-        <Button x:Name="findButton" Content="Поиск" HorizontalAlignment="Left" Margin="571,30,0,0" VerticalAlignment="Top" Width="50" Height="23" Click="findButton_Click"/>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="116*"/>
+            <ColumnDefinition Width="141*"/>
+            <ColumnDefinition Width="136*"/>
+            <ColumnDefinition Width="0*"/>
+            <ColumnDefinition Width="51*"/>
+            <ColumnDefinition Width="48*"/>
+            <ColumnDefinition Width="53*"/>
+            <ColumnDefinition Width="48*"/>
+            <ColumnDefinition Width="45*"/>
+            <ColumnDefinition Width="116*"/>
+        </Grid.ColumnDefinitions>
+
+        <Viewbox Grid.ColumnSpan="8" Grid.Column="1" Grid.Row="1">
+            <DataGrid x:Name="usersGrid" AutoGenerateColumns="False" IsReadOnly="False" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Height="231" Width="369" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding USERNAME}" Header="Логин" Width="auto" />
+                    <DataGridTextColumn Binding="{Binding PASS}" Header="Пароль" Width="auto" />
+                    <DataGridTextColumn Binding="{Binding ROLE}" Header="Роль" Width="auto" FontFamily="Franklin Gothic Demi" FontSize="15" />
+                    <DataGridTextColumn Binding="{Binding STATUS}" Header="Статус" Width="auto"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Viewbox>
+
+        <Viewbox Grid.Row="3" Grid.Column="2">
+            <TextBox x:Name="textBoxFind" TextWrapping="Wrap" ToolTip="Поиск по фамилии" Grid.Row="3" Grid.Column="1" Width="168" Height="50" FontSize="36" TextChanged="textBoxFind_TextChanged"/>
+        </Viewbox>
+
+        <Viewbox Grid.Row="3" Grid.Column="5">
+            <Button x:Name="updateButton" ToolTip="Зафиксировать и обновить." HorizontalAlignment="Center" VerticalAlignment="Top" Width="552" Margin="249,10,20,0" Click="updateButton_Click" Grid.Column="2" Grid.Row="2" Height="546" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/images/refresh.png" />
+                </Button.Background>
+            </Button>
+        </Viewbox>
+        <Viewbox Grid.Row="3" Grid.Column="6">
+            <Button x:Name="deleteButton" ToolTip="Выберите строку и удалите пользователя." HorizontalAlignment="Center" VerticalAlignment="Top" Width="552" Margin="249,10,20,0" Click="deleteClick" Grid.Column="2" Grid.Row="2" Height="546" >
+                <Button.Background>
+                    <ImageBrush ImageSource="/images/delete.png" />
+                </Button.Background>
+            </Button>
+        </Viewbox>
     </Grid>
 </Window>

@@ -17,13 +17,13 @@ namespace Test3.Models
 
         [Key]
         [StringLength(20)]
-        public string TRENEROVKA_NAME { get; set; }
+        public string TRENEROVKA_NAME { get; set; } // ’ранит название тренеровки. явл€етс€ primary key.
 
         [StringLength(20)]
-        public string SOSTAV_NAME { get; set; }
+        public string SOSTAV_NAME { get; set; } // ’ранит название состава.
 
-        [Column(TypeName = "smalldatetime")]
-        public DateTime? TRENEROVKA_DATE { get; set; }
+        [StringLength(20)]
+        public string TRENEROVKA_DATE { get; set; } // ’ранит дату тренеровки.
 
         public virtual SOSTAV SOSTAV { get; set; }
 

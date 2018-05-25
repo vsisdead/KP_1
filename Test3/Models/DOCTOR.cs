@@ -28,7 +28,5 @@ namespace Test3.Models
         public string OSMOTR_NAME { get; set; }
 
         public virtual OSMOTR OSMOTR { get; set; }
-
-        public virtual USERS USERS { get; set; }
     }
 }

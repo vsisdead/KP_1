@@ -5,96 +5,225 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test3.ForUsers"
         mc:Ignorable="d"
-           Title="Пользователь: Тренер" Height="350" Width="640">
+        WindowStartupLocation="CenterScreen"
+        WindowState="Maximized"
+        Title="Пользователь: Тренер" >
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/bate.jpg" Stretch="UniformToFill"  TileMode="None" />
+    </Window.Background>
+
 
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="543*"/>
+            <ColumnDefinition Width="217*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20*"/>
             <RowDefinition Height="260*"/>
             <RowDefinition Height="39*"/>
         </Grid.RowDefinitions>
 
-        <Menu Height="20" VerticalAlignment="Top">
+        <Menu Height="20" VerticalAlignment="Top" Grid.ColumnSpan="2">
             <MenuItem x:Name="label1" Header="Label:" Width="auto" Height="auto" />
             <MenuItem x:Name="About" Header="О программе" HorizontalAlignment="Left" Click="About_Click"/>
             <MenuItem Header="Выйти" HorizontalAlignment="Left" Click="Button_Click"/>
         </Menu>
 
-        <TabControl Grid.Row="1" Grid.RowSpan="2">
-            <TabItem Header="Список тренеров">
-                <Grid Background="#808080">
-                    <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="81*"/>
-                        <ColumnDefinition Width="118*"/>
-                        <ColumnDefinition Width="46*"/>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="66*"/>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="77*"/>
-                    </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="trenerGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="auto" Margin="80,31,0,0" VerticalAlignment="Top" Width="auto" Grid.ColumnSpan="7" IsReadOnly="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding USER_ID}" Header="ID" Width="auto" />
-                            <DataGridTextColumn Binding="{Binding TRENER_FAMIL}" Header="Фамилия" Width="auto"/>
-                            <DataGridTextColumn Binding="{Binding TRENER_NAME}" Header="Имя" Width="auto"/>
-                            <DataGridTextColumn Binding="{Binding TRENER_MIDDLE}" Header="Отчество" Width="auto"/>
-                            <DataGridTextColumn Binding="{Binding TRENEROVKA_NAME}" Header="Тип тренеровки" Width="auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <Button x:Name="addButton" Content="Добавить тренера" HorizontalAlignment="Left" Margin="8,75,0,0" VerticalAlignment="Top" Width="120" Click="addButton_Click" Grid.ColumnSpan="2"/>
-                    <Button x:Name="updateButton" Content="Обновить" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="8,109,71,0" Click="updateButton_Click" Grid.ColumnSpan="2" />
-                    <TextBox x:Name="textBoxFind" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="31,220,0,0" TextWrapping="Wrap" ToolTip="Поиск по фамилии" VerticalAlignment="Top" Width="120"/>
-                    <Button Content="find" Grid.Column="1" Margin="70,220,10,0" VerticalAlignment="Top" Height="23" Click="findButton_Click"/>
-                </Grid>
-            </TabItem>
+        <TabControl Grid.RowSpan="3" Margin="0,20,0,0" Grid.ColumnSpan="2">
+            <TabControl.Background>
+                <ImageBrush ImageSource="/Images/bate.jpg" Stretch="UniformToFill" TileMode="None" />
+            </TabControl.Background>
 
 
             <TabItem Header="Список спортсменов">
-                <Grid Background="#808080">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="18*"/>
+                        <RowDefinition Height="264*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="95*"/>
+                    </Grid.RowDefinitions>
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition Width="80*"/>
-                        <ColumnDefinition Width="139*"/>
-                        <ColumnDefinition Width="50*"/>
-                        <ColumnDefinition Width="119*"/>
-                        <ColumnDefinition Width="43*"/>
-                        <ColumnDefinition Width="117*"/>
-                        <ColumnDefinition Width="78*"/>
+                        <ColumnDefinition Width="118*"/>
+                        <ColumnDefinition Width="141*"/>
+                        <ColumnDefinition Width="136*"/>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="51*"/>
+                        <ColumnDefinition Width="48*"/>
+                        <ColumnDefinition Width="144*"/>
+                        <ColumnDefinition Width="116*"/>
                     </Grid.ColumnDefinitions>
-                    <DataGrid x:Name="sportsmenGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="auto" Margin="0,31,0,0" VerticalAlignment="Top" Width="auto" Grid.Column="1" Grid.ColumnSpan="6" IsReadOnly="True" >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding USER_ID}" Header="ID" Width="auto" />
-                            <DataGridTextColumn Binding="{Binding SOSTAV_NAME}" Header="Состав" Width="auto" IsReadOnly="False"/>
-                            <DataGridTextColumn Binding="{Binding SPORTSMEN_FAMIL}" Header="Фамилия" Width="auto"/>
-                            <DataGridTextColumn Binding="{Binding SPORTSMEN_NAME}" Header="Имя" Width="auto"/>
-                            <DataGridTextColumn Binding="{Binding SPORTSMEN_MIDDLE}" Header="Отчество" Width="auto"/>
-                            <DataGridTextColumn Binding="{Binding BDAY}" Header="Дата рождения" Width="auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
 
+                    <Viewbox Grid.ColumnSpan="6" Grid.Column="1" Grid.Row="1">
+                        <DataGrid x:Name="sportsmenGrid" ToolTip="Доступно изменение столбца состав." AutoGenerateColumns="False"  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Height="231" Width="auto" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding USER_ID}" Header="ID" Width="auto" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding SOSTAV_NAME}" Header="Состав" Width="auto" />
+                                <DataGridTextColumn Binding="{Binding SPORTSMEN_FAMIL}" Header="Фамилия" Width="auto" FontFamily="Franklin Gothic Demi" FontSize="15" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding SPORTSMEN_NAME}" Header="Имя" Width="auto" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding SPORTSMEN_MIDDLE}" Header="Отчество" Width="auto" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding BDAY}" Header="Дата рождения" Width="auto" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding HEALTH}" Header="Состояние" Width="auto" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding CONTRACT}" Header="Контракт" Width="auto" IsReadOnly="True"/>
 
-                    <TextBox x:Name="textBoxFind1" Grid.ColumnSpan="2" HorizontalAlignment="Left" Height="23" Margin="31,220,0,0" TextWrapping="Wrap" ToolTip="Поиск по фамилии" VerticalAlignment="Top" Width="120"/>
-                    <Button Content="find" Grid.Column="1" Margin="70,220,10,0" VerticalAlignment="Top" Height="23" Click="findButton_Click1"/>
-                    <Button x:Name="updateButton1" Content="Обновить" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="0,221,42,0" Click="updateButton_Click" Grid.Column="3" Grid.ColumnSpan="2" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Viewbox>
+
+                    <Viewbox Grid.Row="3" Grid.Column="2">
+                        <TextBox x:Name="textBoxFind" TextWrapping="Wrap" ToolTip="Поиск по фамилии" Grid.Row="3" Grid.Column="1" Width="168" Height="50" FontSize="36" TextChanged="textBoxFind_TextChanged"/>
+                    </Viewbox>
+
+                    <Viewbox Grid.Row="3" Grid.Column="1">
+                        <ComboBox x:Name="comboBox1" ToolTip="Поиск по составу" Grid.Row="3" Grid.Column="1" Width="168" Height="50" FontSize="18" SelectionChanged="comboBox1_SelectionChanged"/>
+                    </Viewbox>
+                    
+                    <Viewbox Grid.Row="3" Grid.Column="5">
+                        <Button x:Name="updateButton" ToolTip="Зафиксировать изменения и обновить." HorizontalAlignment="Center" VerticalAlignment="Top" Width="552" Margin="249,10,20,0" Click="updateButton_Click" Grid.Column="2" Grid.Row="2" Height="546" >
+                            <Button.Background>
+                                <ImageBrush ImageSource="/images/refresh.png" />
+                            </Button.Background>
+                        </Button>
+                    </Viewbox>
                 </Grid>
-
             </TabItem>
 
-            <TabItem Header="Тренеровки">
-                <Grid Background="#808080">
-                    <DataGrid x:Name="trenerovkaGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="auto" Margin="66,65,412,0" VerticalAlignment="Top" Width="auto" >
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding TRENEROVKA_NAME}" Header="Название" Width="auto" IsReadOnly="True"/>
-                            <DataGridTextColumn Binding="{Binding SOSTAV_NAME}" Header="Состав" Width="auto"/>
-                            <DataGridTextColumn Binding="{Binding TRENEROVKA_DATE}" Header="Дата" Width="auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
 
-                    <DataGrid x:Name="sostavGrid" AutoGenerateColumns="False" HorizontalAlignment="Center" Height="auto" Margin="435,65,91,0" VerticalAlignment="Top" Width="100" IsReadOnly="True">
-                        <DataGrid.Columns>
-                            <DataGridTextColumn Binding="{Binding SOSTAV_NAME}" Header="Состав" Width="auto"/>
-                        </DataGrid.Columns>
-                    </DataGrid>
-                    <Button x:Name="updateButton3" Content="Обновить" HorizontalAlignment="Center" VerticalAlignment="Top" Width="120" Margin="0,221,42,0" Click="updateButton_Click3" Grid.Column="3" Grid.ColumnSpan="2" />
+            <TabItem Header="Список тренеров">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="18*"/>
+                        <RowDefinition Height="264*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="95*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="118*"/>
+                        <ColumnDefinition Width="141*"/>
+                        <ColumnDefinition Width="136*"/>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="51*"/>
+                        <ColumnDefinition Width="48*"/>
+                        <ColumnDefinition Width="144*"/>
+                        <ColumnDefinition Width="116*"/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.ColumnSpan="6" Grid.Column="1" Grid.Row="1">
+                        <DataGrid x:Name="trenerGrid" ToolTip="Доступно только чтение." AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="2" Grid.Row="1" Margin="3,0,0,0" Height="193" Width="auto">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding USER_ID}" Header="ID" Width="auto" />
+                                <DataGridTextColumn Binding="{Binding TRENER_FAMIL}" Header="Фамилия" Width="auto"/>
+                                <DataGridTextColumn Binding="{Binding TRENER_NAME}" Header="Имя" Width="auto"/>
+                                <DataGridTextColumn Binding="{Binding TRENER_MIDDLE}" Header="Отчество" Width="auto"/>
+                                <DataGridTextColumn Binding="{Binding TRENEROVKA_NAME}" Header="Тип тренеровки" Width="auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Viewbox>
+                    <Viewbox Grid.Row="3" Grid.Column="2">
+                        <TextBox x:Name="textBoxFind1" TextWrapping="Wrap" ToolTip="Поиск по фамилии" Grid.Row="3" Grid.Column="1" Width="168" Height="50" FontSize="36" TextChanged="textBoxFind1_TextChanged" RenderTransformOrigin="0.34,0.34"/>
+                    </Viewbox>
+
+                    <Viewbox Grid.Row="3" Grid.Column="5">
+                        <Button x:Name="updateButton1" ToolTip="Зафиксировать изменения и обновить." HorizontalAlignment="Center" VerticalAlignment="Top" Width="552" Margin="249,10,20,0" Click="updateButton_Click1" Grid.Column="2" Grid.Row="2" Height="546" >
+                            <Button.Background>
+                                <ImageBrush ImageSource="/images/refresh.png" />
+                            </Button.Background>
+                        </Button>
+                    </Viewbox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Тренировки">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="18*"/>
+                        <RowDefinition Height="264*"/>
+                        <RowDefinition Height="40*"/>
+                        <RowDefinition Height="33*"/>
+                        <RowDefinition Height="95*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="118*"/>
+                        <ColumnDefinition Width="219*"/>
+                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="72*"/>
+                        <ColumnDefinition Width="144*"/>
+                        <ColumnDefinition Width="116*"/>
+                    </Grid.ColumnDefinitions>
+                    <Viewbox Grid.ColumnSpan="4" Grid.Column="1" Grid.Row="1">
+                        <DataGrid x:Name="trenerovkaGrid" ToolTip="Доступно изменение столбцов состав и дата." AutoGenerateColumns="False"  Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Height="211" Width="auto" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding TRENEROVKA_NAME}" Header="Название тренировки" Width="auto" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding SOSTAV_NAME}" Header="Состав" Width="auto"/>
+                                <DataGridTextColumn Binding="{Binding TRENEROVKA_DATE}" Header="Дата" Width="auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Viewbox>
+                    <Viewbox Grid.Row="3" Grid.Column="2">
+
+                        <Button x:Name="updateButton5" ToolTip="Зафиксировать изменения и обновить." Click="updateButton_Click5" Grid.Column="5" Grid.Row="3"  BorderBrush="{x:Null}" Height="2793" Width="2788">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/images/refresh.png" />
+                            </Button.Background>
+                        </Button>
+                    </Viewbox>
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Матчи" Height="22" VerticalAlignment="Top">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9*"/>
+                        <RowDefinition Height="140*"/>
+                        <RowDefinition Height="13*"/>
+                        <RowDefinition Height="17*"/>
+                        <RowDefinition Height="48*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="85*"/>
+                        <ColumnDefinition Width="232*"/>
+                        <ColumnDefinition Width="0*"/>
+                        <ColumnDefinition Width="32*"/>
+                        <ColumnDefinition Width="28*"/>
+                        <ColumnDefinition Width="303*"/>
+                        <ColumnDefinition Width="74*"/>
+                    </Grid.ColumnDefinitions>
+
+
+                    <Viewbox Grid.ColumnSpan="1" Grid.Column="1" Grid.Row="1" Height="266" VerticalAlignment="Top">
+                        <DataGrid x:Name="sostavGrid1" ToolTip="Доступно: Редактировать время ближайшего матча. / При двойном щелчке на состав в таблице справа выведется список доступных игроков." AutoGenerateColumns="False" MouseDoubleClick="MouseDouble_Click" Grid.Column="2" Grid.Row="1" Grid.ColumnSpan="6" Height="auto" Width="auto" >
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Binding="{Binding SOSTAV_NAME}" Header="Состав" Width="auto" IsReadOnly="True"/>
+                                <DataGridTextColumn Binding="{Binding BLIZH_MATCH}" Header="Ближайший матч" Width="auto"/>
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Viewbox>
+
+                    <Viewbox Grid.Column="4" Grid.Row="1" VerticalAlignment="Top" Height="280" Grid.ColumnSpan="2">
+                        <DataGrid x:Name="sportsmenGrid1" AutoGenerateColumns="False" IsReadOnly="True" Grid.Column="1" Grid.Row="1" Grid.ColumnSpan="6" Height="229" Width="auto"  >
+                            <DataGrid.Columns>
+                                <!--<DataGridTextColumn Binding="{Binding USER_ID}" Header="ID" Width="auto" />-->
+                                <DataGridTextColumn Binding="{Binding SOSTAV_NAME}" Header="Состав" Width="auto"/>
+                                <DataGridTextColumn Binding="{Binding SPORTSMEN_FAMIL}" Header="Фамилия" Width="auto" FontFamily="Franklin Gothic Demi" FontSize="15" />
+                                <DataGridTextColumn Binding="{Binding SPORTSMEN_NAME}" Header="Имя" Width="auto"/>
+                                <DataGridTextColumn Binding="{Binding SPORTSMEN_MIDDLE}" Header="Отчество" Width="auto"/>
+                                <!--<DataGridTextColumn Binding="{Binding BDAY}" Header="Дата рождения" Width="auto"/>-->
+                                <DataGridTextColumn Binding="{Binding HEALTH}" Header="Состояние" Width="auto"/>
+                                <!--<DataGridTextColumn Binding="{Binding CONTRACT}" Header="Контракт" Width="auto"/>-->
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Viewbox>
+
+                    <Viewbox Grid.Row="3" Grid.Column="3" Grid.ColumnSpan="2">
+
+                        <Button x:Name="updateButton4" Click="updateButton_Click4" ToolTip="Зафиксировать изменения и обновить." Grid.Column="5" Grid.Row="3"  BorderBrush="{x:Null}" Height="2793" Width="2788">
+                            <Button.Background>
+                                <ImageBrush ImageSource="/images/refresh.png" />
+                            </Button.Background>
+                        </Button>
+                    </Viewbox>
                 </Grid>
             </TabItem>
         </TabControl>

@@ -1,20 +1,25 @@
-﻿using System;
-using System.Collections.Generic;
+﻿//private void updateButton_Click4(object sender, RoutedEventArgs e)
+//{
+//    try
+//    {
+//        db.SaveChanges();
+//        db.OSMOTR.Load();
+//        db.SOSTAV.Load();
+//    }
+//    catch (Exception)
+//    {
+//        MessageBox.Show("Введены неверные данные.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+//        sostavGrid1.ItemsSource = db.SOSTAV.ToList();
+//    }
+//}
+
+using System;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Test3.Models;
-using Test3.ForUsers;
 
 namespace Test3.ForUsers
 {
@@ -33,10 +38,18 @@ namespace Test3.ForUsers
             db.SPORTSMENS.Load();
             db.TRENEROVKA.Load();
             db.SOSTAV.Load();
-            sostavGrid.ItemsSource = db.SOSTAV.Local.ToBindingList();
+            db.DOCTOR.Load();
+            db.OSMOTR.Load();
+            sostavGrid1.ItemsSource = db.SOSTAV.Local.ToBindingList();
             trenerovkaGrid.ItemsSource = db.TRENEROVKA.Local.ToBindingList();
             trenerGrid.ItemsSource = db.TRENER.Local.ToBindingList();
             sportsmenGrid.ItemsSource = db.SPORTSMENS.Local.ToBindingList();
+            sportsmenGrid1.ItemsSource = db.SPORTSMENS.Local.ToBindingList();
+            comboBox1.Items.Add("Основной");
+            comboBox1.Items.Add("Дублирующий");
+            comboBox1.Items.Add("Молодежный");
+            comboBox1.Items.Add("Юношеский");
+            comboBox1.Items.Add("Детский");
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -46,24 +59,41 @@ namespace Test3.ForUsers
             this.Close();
         }
 
-        private void addButton_Click(object sender, RoutedEventArgs e)
-        {
-            AddTrenerWindow addtrenerWindow = new AddTrenerWindow();
-            addtrenerWindow.Show();
-            //db.SaveChanges();
-            db.TRENER.Load();
-        }
-
+      
         private void updateButton_Click(object sender, RoutedEventArgs e)
         {
-            db.SaveChanges();
-            db.TRENER.Load();
+            try
+            {
+                db.SaveChanges();
+                db.SPORTSMENS.Load();
+                sportsmenGrid.ItemsSource = db.SPORTSMENS.Local.ToBindingList();
+
+            }
+            catch (Exception)
+            {
+
+                MessageBox.Show("Введены неверные данные.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                //db.SPORTSMENS.Load();
+                sportsmenGrid.ItemsSource = db.SPORTSMENS.Local.ToBindingList();
+
+            }
         }
+
 
         private void updateButton_Click1(object sender, RoutedEventArgs e)
         {
-            db.SaveChanges();
-            db.SPORTSMENS.Load();
+            try
+            {
+                db.SaveChanges();
+                db.TRENER.Load();
+                trenerGrid.ItemsSource = db.TRENER.Local.ToBindingList();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Введены неверные данные.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                trenerGrid.ItemsSource = db.TRENER.Local.ToBindingList();
+            }
         }
 
         private void About_Click(object sender, RoutedEventArgs e)
@@ -71,65 +101,79 @@ namespace Test3.ForUsers
             MessageBox.Show("Powered by Vadim Samtsov, BSTU (c) 2018");
         }
 
-        private void updateButton_Click3(object sender, RoutedEventArgs e)
+        
+        private void updateButton_Click5(object sender, RoutedEventArgs e)
         {
             try
             {
                 db.SaveChanges();
                 db.TRENEROVKA.Load();
-                db.SOSTAV.Load();
+                
+                trenerovkaGrid.ItemsSource = db.TRENEROVKA.Local.ToBindingList();
+
+
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Введены неверные данные.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                trenerovkaGrid.ItemsSource = db.TRENEROVKA.ToList();
+                trenerovkaGrid.ItemsSource = db.TRENEROVKA.Local.ToBindingList();
+                
+            }
+        }
+        private void MouseDouble_Click(object sender, MouseButtonEventArgs e)
+        {
+            try
+            {
+                SOSTAV sostav = sostavGrid1.SelectedItem as SOSTAV;
+                string sost = sostav.SOSTAV_NAME;
+                sportsmenGrid1.ItemsSource = db.SPORTSMENS.Where(u => u.SOSTAV_NAME.StartsWith(sost)).ToList();
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Выбрана пустая строка.");
+            }
+        }
+        private void updateButton_Click4(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                db.SaveChanges();
+                db.SPORTSMENS.Load();
+                db.SOSTAV.Load();
+                sostavGrid1.ItemsSource = db.SOSTAV.Local.ToBindingList();
+                //sportsmenGrid1.ItemsSource = db.SPORTSMENS.Local.ToBindingList();
+
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Введены неверные данные.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                sostavGrid1.ItemsSource = db.SOSTAV.Local.ToBindingList();
+                sportsmenGrid1.ItemsSource = db.SPORTSMENS.Local.ToBindingList();
             }
         }
 
-        private void findButton_Click(object sender, RoutedEventArgs e)
+       
+
+        private void comboBox1_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            using (Model1 db = new Model1())
-            {
-                try
-                {
-                    if (textBoxFind.Text != null)
-                    {
-                        string uname = textBoxFind.Text;
-                        trenerGrid.ItemsSource = db.TRENER.Where(p => p.TRENER_FAMIL == uname).ToList();
-                    }
-                    if (textBoxFind.Text == "")
-                    {
-                        trenerGrid.ItemsSource = db.TRENER.ToList();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            Object selectedItem = comboBox1.SelectedItem;
+            string sname = selectedItem.ToString();
+            sportsmenGrid.ItemsSource = db.SPORTSMENS.Where(p => p.SOSTAV_NAME.StartsWith(sname)).ToList();
+
+
         }
 
-        private void findButton_Click1(object sender, RoutedEventArgs e)
+        private void textBoxFind_TextChanged(object sender, TextChangedEventArgs e)
         {
-            using (Model1 db = new Model1())
-            {
-                try
-                {
-                    if (textBoxFind1.Text != null)
-                    {
-                        string uname = textBoxFind1.Text;
-                        sportsmenGrid.ItemsSource = db.SPORTSMENS.Where(p => p.SPORTSMEN_FAMIL == uname).ToList();
-                    }
-                    if (textBoxFind1.Text == "")
-                    {
-                        sportsmenGrid.ItemsSource = db.SPORTSMENS.ToList();
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show(ex.Message);
-                }
-            }
+            string uname = textBoxFind.Text;
+            sportsmenGrid.ItemsSource = db.SPORTSMENS.Where(p => p.SPORTSMEN_FAMIL.StartsWith(uname)).ToList();
         }
+        private void textBoxFind1_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string uname = textBoxFind1.Text;
+            trenerGrid.ItemsSource = db.TRENER.Where(p => p.TRENER_FAMIL.StartsWith(uname)).ToList();
+        }
+
+
     }
 }

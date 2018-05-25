@@ -5,16 +5,23 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Test3"
         mc:Ignorable="d"
-        Title="Авторизация" Height="320" Width="640">
+        WindowStartupLocation="CenterScreen"
+        Title="Авторизация"  Height="450" Width="800">
+    <Window.Background>
+        <ImageBrush ImageSource="/Images/bate.jpg" Stretch="UniformToFill" TileMode="None" />
+    </Window.Background>
+
+
     <Grid>
+        <TextBox x:Name="textBoxLog" HorizontalAlignment="Center" Height="32" Margin="340,88,252,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="200" Background="White" BorderBrush="{x:Null}" Foreground="Black" FontSize="20" RenderTransformOrigin="0.5,0.5" Padding="10,0,-8,0" KeyDown="ButtonClick_KeyDown"/>
+        <PasswordBox x:Name="passwordBox" HorizontalAlignment="Center" Height="32" Margin="340,125,252,0" VerticalAlignment="Top" Width="200" Background="White" BorderBrush="{x:Null}" Foreground="Black" FontSize="20" RenderTransformOrigin="0.5,0.5" Padding="10,0,0,0" KeyDown="ButtonClick_KeyDown"/>
+        <Button x:Name="Enter" Style="{DynamicResource reg}" Content="ВОЙТИ" Margin="311,238,281,0" VerticalAlignment="Top"  BorderBrush="{x:Null}"  FontSize="20" FontFamily="Franklin Gothic Demi" Height="54" Width="200" RenderTransformOrigin="0.5,0.5" HorizontalAlignment="Center" Cursor="Hand" Click="Button_Click" KeyDown="ButtonClick_KeyDown"/>
+        <Label Content="РЕГИСТРАЦИЯ" HorizontalAlignment="Center" Margin="357,292,325,0" VerticalAlignment="Top" Width="110" Height="31" Style="{DynamicResource reg1}" FontFamily="Franklin Gothic Demi" FontSize="15" Cursor="Hand" MouseDown="registrButton_Click"/>
+        <Label Content="ЛОГИН" HorizontalAlignment="Center" Margin="256,89,464,0" VerticalAlignment="Top" Width="72" Height="31" Style="{DynamicResource reg1}" FontFamily="Franklin Gothic Demi" FontSize="15" />
+        <Label Content="ПАРОЛЬ" HorizontalAlignment="Center" Margin="256,126,464,0" VerticalAlignment="Top" Width="72" Height="31" Style="{DynamicResource reg1}" FontFamily="Franklin Gothic Demi" FontSize="15"/>
 
+        <Label x:Name="validate" Visibility="Hidden" Content="Неверный логин и/или пароль" HorizontalAlignment="Center" Margin="340,162,256,0" VerticalAlignment="Top" Width="196" Height="20" Style="{DynamicResource reg1}" FontFamily="Franklin Gothic Demi" FontSize="10"/>
 
-        <TextBox Name="textBoxLog" KeyDown="ButtonClick_KeyDown" HorizontalAlignment="Left" Height="25" Margin="237,107,0,0" TextWrapping="Wrap" Width="200" VerticalAlignment="Top"/>
-        <PasswordBox Name="passwordBox" KeyDown="ButtonClick_KeyDown" HorizontalAlignment="Left" Margin="237,147,0,0" VerticalAlignment="Top" Width="200" Height="25"/>
-        <Button Content="Вход"  HorizontalAlignment="Center" Width="120" Margin="267,192,245,68" Click="Button_Click" />
-        <Button Content="Очистить" HorizontalAlignment="Center" Width="120" Margin="267,226,245,34" Click="Button1_Click"/>
-        <Label Content="Логин:" HorizontalAlignment="Left" Margin="157,107,0,0" VerticalAlignment="Top"/>
-        <Label Content="Пароль:" HorizontalAlignment="Left" Margin="157,147,0,0" VerticalAlignment="Top"/>
 
 
     </Grid>

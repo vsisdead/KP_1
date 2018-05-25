@@ -8,25 +8,18 @@ namespace Test3.Models
 
     public partial class USERS
     {
-        [DatabaseGenerated(DatabaseGeneratedOption.None)]
-        public int ID { get; set; }
+        [Key]
+        [StringLength(100)]
+        public string USERNAME { get; set; } // primary key таблицы USERS. Хранит логин пользователя.
 
         [Required]
         [StringLength(100)]
-        public string USERNAME { get; set; }
-
-        [Required]
-        [StringLength(100)]
-        public string PASS { get; set; }
+        public string PASS { get; set; } // Хранит пароль пользователя.
 
         [Required]
         [StringLength(20)]
-        public string ROLE { get; set; }
+        public string ROLE { get; set; } // Хранит роль пользователя.
 
-        public virtual DOCTOR DOCTOR { get; set; }
-
-        public virtual SPORTSMENS SPORTSMENS { get; set; }
-
-        public virtual TRENER TRENER { get; set; }
+        public int? STATUS { get; set; } // Хранит статус пользователя.
     }
 }

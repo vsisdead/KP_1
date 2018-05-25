@@ -24,11 +24,15 @@ namespace Test3.Models
         [StringLength(20)]
         public string SPORTSMEN_MIDDLE { get; set; }
 
-        [Column(TypeName = "date")]
-        public DateTime? BDAY { get; set; }
+        [StringLength(20)]
+        public string BDAY { get; set; }
+
+        [StringLength(20)]
+        public string CONTRACT { get; set; }
+
+        [StringLength(20)]
+        public string HEALTH { get; set; }
 
         public virtual SOSTAV SOSTAV { get; set; }
-
-        public virtual USERS USERS { get; set; }
     }
 }
